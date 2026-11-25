@@ -1,0 +1,281 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,graphicx}
+\usepackage[a4paper,top=24mm,bottom=24mm,left=29mm,right=29mm]{geometry}
+\usepackage{color}
+\definecolor{referenceblue}{rgb}{0.12,0.23,0.40}
+\usepackage[colorlinks=true,allcolors=referenceblue]{hyperref}
+\hypersetup{pdftitle={Substitution bounds for the inducibility of six-vertex graphs},pdfauthor={Oleg Kyzlasov},pdfsubject={Extremal graph theory},pdfkeywords={inducibility, Petersen graph, rook graph, graph substitution, flag algebras}}
+\urlstyle{same}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\F}{F_{26}}
+\newcommand{\BH}{\mathcal H}
+\newcommand{\E}{\mathbb E}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\trans}{\mathsf T}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Aut}{Aut}
+\setlength{\emergencystretch}{1em}
+\setlength{\abovedisplayskip}{8pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{8pt plus 2pt minus 2pt}
+\setcounter{tocdepth}{1}
+\raggedbottom
+\title{\bfseries Substitution bounds for the inducibility\\of six-vertex graphs}
+\author{Oleg Kyzlasov}
+\date{22 November 2026 \quad $\cdot$ \quad Version 2.0}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Balanced substitutions of the Petersen graph give induced density \(480/11111\)
+for the tree \(F_{26}\). This value is sharp among graphs with no induced bull
+or house, and lies within \(3.471\cdot10^{-8}\) of a certified unrestricted upper
+bound. For \(F_{74}\) we prove a finite counting inequality for substitutions
+into the complement of the \(3\)-by-\(3\) rook graph. Equality characterizes
+the balanced powers of this graph, with limiting density \(360/7381\).
+A rational upper certificate places the unrestricted maximum within
+\(6.95\cdot10^{-9}\) of that value. For \(F_{22},F_{29},F_{34}\) and \(F_{62}\)
+we give explicit constructions exceeding the values in four conjectures of
+Bodn\'ar, Gao, Le\'on, Liu, Pikhurko and Sun (arXiv:2606.00290v3).
+For \(F_{29}\), a graph on 36 vertices suffices to define the blowup.
+\end{abstract}
+
+\section{Induced density and the Petersen bounds}
+The graph \(F=F_{26}\) has vertex set \(\{0,1,2,3,4,5\}\) and edge set
+\(\{01,02,05,13,45\}\), where \(ij\) denotes the unordered pair \(\{i,j\}\).
+This labelling numbers the vertices clockwise from the top in row 26 of
+\href{https://arxiv.org/html/2606.00290v3#S5.T3}{Table~3} of
+Bodn\'ar, Gao, Le\'on, Liu, Pikhurko and Sun~\cite{six}. Throughout,
+the subscript in \(F_i\) is the index in their catalogue. Each of the
+six targets considered here has six vertices. The graphs in which
+we count copies can have any order. In particular, the Petersen graph
+on ten vertices and the board graph on nine vertices serve as
+substitution templates for \(F_{26}\) and \(F_{74}\), respectively.
+
+All finite graphs are simple and undirected. For a graph \(H\) on \(h\)
+vertices, let \(c_H(G)\) count the \(h\)-element sets \(A\subseteq V(G)\)
+such that \(G[A]\cong H\). Its induced density and inducibility are
+\[
+ p(H,G)=\frac{c_H(G)}{\binom{|V(G)|}{h}},\qquad
+ \lambda_H=\lim_{n\to\infty}\ \max_{|V(G)|=n}p(H,G).
+\]
+The density is defined for \(|V(G)|\ge h\). The maximum is nonincreasing in \(n\) by averaging over vertex deletions~\cite{pg}. Restricting the maximum to a class closed under induced subgraphs gives its inducibility limit by the same argument, provided the class has graphs of every order.
+
+
+This paper extends the Petersen case of the first version~\cite{first}.
+Sections~\ref{sec:construction} through~\ref{sec:upper} give its construction,
+finite extremal theorem and upper certificate. Section~\ref{sec:rook}
+proves the corresponding weight inequality for the rook substitution.
+Sections~\ref{sec:cycle} and~\ref{sec:perturb} examine four proposed
+values from Section~4 of~\cite{six}. All graph numbers and comparisons
+in this paper refer to the third arXiv version of that article.
+
+\begin{theorem}\label{th:global}
+The unrestricted inducibility satisfies
+\begin{equation}\label{eq:interval}
+ L:=\frac{480}{11111}
+ \ \le\ \lambda_F\ \le\
+ U:=\frac{233973195106737927117969229}{5415987671873538702683668480}.
+\end{equation}
+\end{theorem}
+
+To ten decimal places the lower endpoint is \(0.0432004320\).
+Table~3 of~\cite{six}, version~3, lists \(0.0293174175\) and \(0.0432004682\) in this row. The relative increase over the displayed lower value is approximately \(47.35415\%\). Section~5 of~\cite{six} describes the upper entry as numerical output from the order-eight semidefinite program. Here \(U=0.0432004667074510\ldots\) follows from integer Gram factors on eight and nine vertices. The difference \(U-L=3.4703130969\ldots\cdot10^{-8}\) leaves the unrestricted value undetermined by these bounds.
+
+Let \(\BH\) be the class of graphs with no induced bull and no induced house. A bull consists of a triangle with a pendant edge at each of two distinct triangle vertices. A house is the complement of the five-vertex path. Let \(P\) be the Petersen graph and \(P^0=K_1\) the one-vertex graph. Form \(P^{t+1}\) by replacing each vertex of \(P\) by a copy of \(P^t\), putting all possible edges between two copies precisely when the corresponding vertices of \(P\) are adjacent.
+
+\begin{theorem}\label{th:finite}
+The inducibility of \(F\) in \(\BH\) is \(L\). For \(G\in\BH\) with \(n\ge1\) vertices,
+\begin{equation}\label{eq:finite}
+ c_F(G)\le \frac{2(n^6-n)}{33333}.
+\end{equation}
+Equality holds if and only if \(n=10^t\) and \(G\cong P^t\), for an integer \(t\ge0\).
+\end{theorem}
+
+Between successive powers of ten, \eqref{eq:finite} gives an upper estimate for the finite maximum. The proof of the bound uses vertex weights, but the count in \(P^t\) is elementary.
+
+\section{Counting in Petersen substitutions}\label{sec:construction}
+
+\begin{figure}[htb]
+\centering\includegraphics[width=.84\linewidth]{graphs.pdf}
+\caption{The tree \(F\) and the Petersen graph \(P\). In \(P\) a vertex \(ij\) represents a two-element subset of \(\{0,1,2,3,4\}\). Two vertices are adjacent when their subsets are disjoint.}
+\label{fig:graphs}
+\end{figure}
+
+A \emph{module} is a set \(M\) such that each vertex outside \(M\) is joined to all or none of \(M\). A graph is \emph{prime} if it has no module of size between two and its order minus one. In a connected tree a proper module \(M\) of size at least two has an outside neighbour adjacent to all of \(M\). An internal edge would give a triangle, and two outside neighbours would give a four-cycle. Thus the vertices of \(M\) are leaves with a common neighbour. In \(F\) the three leaves have distinct neighbours. In particular, \(F\) is prime.
+
+There are exactly 60 induced copies of \(F\) in \(P\). To see this, fix the centre \(01\). Its three neighbours are the pairs in \(\{2,3,4\}\), and all three must occur. Choose two of them to carry the longer arms. Each has two possible terminal vertices of the form \(\{\epsilon,j\}\), where \(j\) is the omitted element of \(\{2,3,4\}\) and \(\epsilon\in\{0,1\}\). The two terminals have distinct \(j\)'s. They are nonadjacent precisely when they have the same \(\epsilon\). This gives \(3\cdot2=6\) copies per centre. The ten vertices are equivalent, and a copy has exactly one centre.
+
+Put \(n_t=10^t\), \(a_t=c_F(P^t)\). A copy of \(F\) crossing two or more parts takes at most one vertex from each part, since otherwise its intersection with a repeated part would be a proper module. Consequently
+\[
+ a_0=0,\qquad a_{t+1}=10a_t+60n_t^6,\qquad
+ a_t=\frac{60(n_t^6-n_t)}{10^6-10}=\frac{2(n_t^6-n_t)}{33333}.
+\]
+It follows that \(p(F,P^t)\to 6!\cdot60/(10^6-10)=L\). The house is prime because the five-vertex path is prime and complementation preserves modules. For the bull, none of its 25 subsets of sizes two through four is a module. The same transversal-copy argument now shows that substitution preserves \(\BH\). Since \(P\) is triangle-free, \(P\in\BH\) and hence \(P^t\in\BH\) for every \(t\). Triangles already occur in \(P^2\): an edge inside one part and a single vertex in an adjacent part form one.
+
+\section{A weighted inequality and the hereditary class}\label{sec:restricted}
+
+Give each vertex \(v\) of \(G\) a weight \(x_v\ge0\), with \(\sum_v x_v=1\). Put
+\begin{equation}\label{eq:defq}
+ q(G,x)=6!\!\sum_{\substack{A\subseteq V(G),\ |A|=6\\G[A]\cong F}}\ \prod_{v\in A}x_v,
+ \qquad s_6(x)=\sum_v x_v^6 .
+\end{equation}
+The first quantity is the probability that six independent draws are distinct and induce \(F\). With uniform weights it is \(6!c_F(G)/|V(G)|^6\). The second is the probability that all six draws coincide. Removing zero-weight vertices leaves both quantities unchanged.
+
+\begin{theorem}\label{th:weighted}
+For every finite \(G\in\BH\) and every probability vector \(x\),
+\begin{equation}\label{eq:weighted}
+ q(G,x)\le L(1-s_6(x)).
+\end{equation}
+After removal of zero weights, equality holds precisely for the following weighted graphs. Start with one vertex of mass one. A vertex of mass \(y\) may be replaced by a copy of \(P\), giving each of its ten vertices mass \(y/10\) and the former external adjacencies. Perform any finite sequence of these replacements.
+\end{theorem}
+
+For triangle-free graphs, Sections~\ref{sec:colour} and~\ref{sec:equality} prove \eqref{eq:weighted} and show that the only positive-support equality examples are \(K_1\) and the equally weighted \(P\). We deduce the full statement by induction.
+
+\begin{proof}[Deduction of Theorem~\ref{th:weighted} from its triangle-free case]
+Take positive weights and induct on the number of vertices. For one vertex, both sides of \eqref{eq:weighted} vanish. In a disconnected graph with components \(G_i\), masses \(y_i\) and normalized component weights \(x_i\), connectivity of \(F\) gives \(q(G,x)=\sum_i y_i^6q(G_i,x_i)\). The induction hypothesis bounds this sum by \(L(\sum_i y_i^6-s_6(x))\), strictly below the right side of \eqref{eq:weighted}.
+
+For connected \(G\in\BH\), \href{https://arxiv.org/html/2604.27594v3#S1.Thmtheorem3}{Theorem~1.3} of Belavadi and Ho\`ang~\cite{bh} gives three possibilities. The graph has a nontrivial proper module (a homogeneous set in their terminology), is triangle-free, or has bipartite complement. Lemmas~\ref{lem:tf} and~\ref{lem:equality} cover the triangle-free case. A graph with bipartite complement is the union of two cliques on disjoint vertex sets, with arbitrary edges between them. Its independence number is at most two, whereas the three leaves of \(F\) are independent. Here \(q=0\) and equality forces one positive vertex.
+
+For a nontrivial proper module \(M\) of mass \(y\), contract \(M\) to a vertex of weight \(y\), obtaining \((G/M,x')\). Keeping any one vertex of \(M\) gives an induced copy of the quotient, so both it and \(G[M]\) lie in \(\BH\). By primeness, every copy of \(F\) either lies in \(M\), meets \(M\) once, or avoids \(M\). Write \(x|_M/y=(x_v/y)_{v\in M}\) for the normalized weights on \(M\). Summing over the choice of a vertex in \(M\) gives
+\begin{equation}\label{eq:subst}
+ q(G,x)=q(G/M,x')+y^6 q(G[M],x|_M/y).
+\end{equation}
+Since \(s_6(x')=s_6(x)-\sum_{v\in M}x_v^6+y^6\), the two inductive bounds yield \eqref{eq:weighted}. The deficit \(L(1-s_6)-q\) is the quotient deficit plus \(y^6\) times the internal deficit. Equality forces equality in both smaller graphs. Replacing the contracted leaf by the internal substitution tree gives the stated construction. Conversely, the equally weighted \(P\) has \(q=27/625\) and \(s_6=10^{-5}\), hence equality. Equation~\eqref{eq:subst} preserves equality at every replacement.
+\end{proof}
+
+With \(x_v=1/n\), \eqref{eq:weighted} gives \eqref{eq:finite}. A leaf at depth \(d\) in the substitution tree has mass \(10^{-d}\). Thus uniform leaf weights force a common depth \(t\) and give \(P^t\) up to isomorphism. Section~\ref{sec:construction} proves attainment at all these orders. Dividing \eqref{eq:finite} by \(\binom n6\) and taking the limit proves Theorem~\ref{th:finite}.
+
+\section{The triangle-free certificate}\label{sec:colour}
+
+\begin{lemma}\label{lem:tf}
+Inequality \eqref{eq:weighted} holds for every finite triangle-free graph \(T\) and every nonnegative weight vector of sum one.
+\end{lemma}
+
+Sample eight independent vertices of \(T\) with law \(x\). Give each pair of sample positions one of three colours: blue for equal vertices, red for adjacent vertices, white otherwise. Each blue class represents one sampled vertex. Between two classes all pairs have the same colour, and the red quotient is triangle-free. Let \(\mathcal C_n\) consist of all isomorphism types of these coloured patterns on \(n\) positions, allowing any triangle-free quotient. For \(H\in\mathcal C_8\), write \(f_H\) for the number of six-subsets whose red graph is \(F\), and \(b_H\) for the number of all-blue six-subsets. A red copy of \(F\) must use six different classes by primeness. For a random host \(H\) the score
+\begin{equation}\label{eq:z}
+ z_H=\frac{11111 f_H+480 b_H-13440}{13440}
+\end{equation}
+therefore has mean \(q(T,x)/L+s_6(x)-1\), since \(\binom86=28\).
+
+A \emph{type} \(\sigma\) is a coloured pattern on \(k\in\{0,2,4,6\}\) positions with a fixed ordering of its vertices, called roots. We choose one such ordering per isomorphism class. The \(\sigma\)-\emph{flags} used here extend this pattern by \(u=(8-k)/2\) positions. Two flags agree if a colour-preserving isomorphism fixes each root. In an ordering of \(V(H)\) whose first \(k\) positions give \(\sigma\), the next \(u\) and last \(u\) positions give flags \(i,j\). Let \(M_{H,\sigma}(i,j)\) count the orderings giving this pair. Interchanging the two groups shows that \(M_{H,\sigma}\) is symmetric.
+
+For each type the supplement supplies an integer matrix \(B_\sigma\), a rational symmetric matrix \(Q_\sigma\), and a positive divisor \(d_\sigma\). We write \(\tr\) for trace, \({}^{\trans}\) for transpose, and \(Q\succ0\) for positive definiteness. The certificate gives
+\begin{equation}\label{eq:row}
+ z_H+\sum_\sigma \frac{\tr(M_{H,\sigma}B_\sigma Q_\sigma B_\sigma^{\trans})}{d_\sigma}\le0
+ \quad(H\in\mathcal C_8),\qquad Q_\sigma\succ0 .
+\end{equation}
+The rows of \(B_\sigma\) are indexed by flags. A coloured host is determined by its triangle-free quotient and its positive class sizes, up to automorphisms of the quotient. To check the quotient catalogue, add a vertex with each possible independent neighbourhood and compare the resulting labelled counts with the sum of the orbit sizes. Burnside's lemma then counts the orbits of class sizes. The verifier reconstructs the colour masks and tests that distinct entries represent distinct orbits. For orders one through eight the catalogue sizes are
+\[
+   1,\quad 3,\quad 6,\quad 17,\quad 41,\quad 125,\quad 388,\quad 1491 .
+\]
+Root subsets, their label-preserving embeddings and the two complementary extensions give an independent recount of every product coefficient. In packed symmetric storage, a diagonal coefficient is \(M_{ii}\), and an off-diagonal one is \(2M_{ij}\). For each block the checker forms \(R_\sigma=Q_\sigma-C_\sigma C_\sigma^{\trans}\) using the supplied rational factor \(C_\sigma\). In each row \(R_{ii}>\sum_{j\ne i}|R_{ij}|\), so \(R_\sigma\) and \(Q_\sigma\) are positive definite. Expanding \(B_\sigma Q_\sigma B_\sigma^{\trans}\) and substituting in \eqref{eq:row} checks 1,491 inequalities in 146 blocks of total \(Q\)-dimension 4,164. Exactly 276 host inequalities are tight.
+
+\begin{proof}[Proof of Lemma~\ref{lem:tf}]
+Condition on the vertices drawn at the first \(k\) positions. If they give the labelled type \(\sigma\), let \(p_\sigma\) be the conditional probability vector for one extension. Otherwise put \(p_\sigma=0\). The two groups of \(u\) new draws are conditionally independent and identically distributed. Exchangeability gives
+\[
+ \E M_{H,\sigma}=8!\,\E[\one_\sigma p_\sigma p_\sigma^{\trans}].
+\]
+Here \(\one_\sigma\) is the indicator of a root match. With \(w=B_\sigma^{\trans}p_\sigma\), the expected trace in \eqref{eq:row} is \(8!\,\E[\one_\sigma w^{\trans}Q_\sigma w]\ge0\). Taking expectations gives \(\E z_H\le0\), hence \eqref{eq:weighted} for every finite triangle-free \(T\) and every probability vector \(x\).
+\end{proof}
+
+\section{Equality in the triangle-free inequality}\label{sec:equality}
+
+\begin{lemma}\label{lem:equality}
+If all weights are positive, equality in Lemma~\ref{lem:tf} holds precisely for one vertex or for the Petersen graph with all weights \(1/10\).
+\end{lemma}
+
+\begin{proof}
+If \(q=0\), equality gives \(s_6=1\) and the support has one vertex. Suppose \(q>0\). An \emph{anchor} is a copy of \(F\) ordered to match the six-root type used in the certificate (block 142, counting from zero). This type has 28 one-vertex flags. Row reduction modulo the prime \(1000000007\) gives 27 pivots in its \(28\)-by-\(27\) integer matrix \(B\), so \(B\) has rank 27 over \(\mathbb R\). Fix the anchor \(R=(01,02,12,03,13,24)\) in \(P\), using the vertex names in Figure~\ref{fig:graphs}. Each of the ten vertices of \(P\) gives a different flag over \(R\). Let \(v\) be the indicator vector of those ten flags. Direct multiplication gives \(B^{\trans}v=0\), so \(\ker B^{\trans}=\mathbb R v\).
+
+At equality every nonnegative expected quadratic form in \eqref{eq:row} vanishes. Since the support is finite and all weights are positive, each fixed anchor has positive probability. Positive definiteness of its \(Q\) gives \(B^{\trans}p=0\) for its one-extension distribution \(p\). Its entries sum to one, hence \(p=v/10\). Six flags are coincidences with the roots, so every vertex belonging to an induced \(F\) has mass \(1/10\). Each of the other four flags prescribes a red neighbourhood on the roots and has total mass \(1/10\).
+
+Number the positions of \(R\) from zero. Table~\ref{tab:profiles} gives, for each outside vertex of \(P\), a root whose replacement yields another induced copy of \(F\). This test uses only adjacencies to the anchor. It therefore applies to any vertex with the same profile in \(T\). Each such vertex has weight \(1/10\), so each of the four classes is a singleton.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{ccl}
+\toprule
+Vertex of \(P\) & Neighbour positions in \(R\) & Position to replace\\
+\midrule
+\(04\) & \(\{2,4\}\) & \(3\)\\
+\(14\) & \(\{1,3\}\) & \(4\)\\
+\(23\) & \(\{0\}\)   & \(2\)\\
+\(34\) & \(\{0,1,2\}\) & \(5\)\\
+\bottomrule
+\end{tabular}
+\caption{The four external profiles of a Petersen anchor and witnesses for the replacement step.}\label{tab:profiles}
+\end{table}
+
+The support now has ten equally weighted vertices. Only the six pairs among the outside vertices are undecided. Of the 64 completions, seven are triangle-free. Their numbers of induced copies, with multiplicities, are \(26,34,38,38,44,44,60\). The unique completion with 60 copies is \(P\). Equality requires exactly 60 since \(q=720c_F/10^6\) and \(s_6=10^{-5}\). The converse follows from the count in Section~\ref{sec:construction}.
+\end{proof}
+
+\section{The unrestricted upper certificate}\label{sec:upper}
+
+For ordinary simple graphs, we combine an eight-vertex score with one nine-vertex term. Both are built from positive semidefinite quadratic forms in flags with common roots~\cite{raz}.
+
+Let \(s_0=2^{42}\). For 169 types \(\sigma\) of sizes \(k=2,4,6\), the data specify an integer matrix \(A_\sigma\) and a map classifying extensions by \(u=(8-k)/2\) vertices. Each map is invariant under permutations of the added vertices. Put \(K_\sigma=A_\sigma A_\sigma^{\trans}/s_0^2\). For an eight-vertex graph \(H\) let
+\[
+ s(H)=p(F,H)+\frac1{8!}\sum_{\pi,\sigma}
+       \one_\sigma(\pi) K_\sigma(i_\pi,j_\pi).
+\]
+Here \(\pi\) orders \(V(H)\). The two flag indices refer to the first and second groups after the roots. A root mismatch contributes zero.
+For a nine-vertex graph \(J\), put
+\begin{equation}\label{eq:nine}
+ t(J)=\frac19\sum_{v\in V(J)}s(J-v)
+  +\frac1{630}\sum_{r,S} K_1\big(i(r,S),\,i(r,S^{c})\big).
+\end{equation}
+In the last sum \(r\) is one labelled root, \(S\) ranges over four-subsets of the other eight vertices, and \(S^c=V(J)\setminus(S\cup\{r\})\). There are \(9\binom84=630\) choices. The index \(i(r,S)\) classifies the graph induced by \(\{r\}\cup S\) with \(r\) distinguished. It takes 90 values and \(K_1=A_1A_1^{\trans}/s_0^2\) for the supplied integer matrix \(A_1\). On nine-vertex graphs, \(\max_J t(J)=U\).
+
+\begin{proof}[Proof of the upper bound in Theorem~\ref{th:global}]
+Draw nine vertices independently and uniformly from an \(n\)-vertex graph \(G\), \(n\ge6\). Join two sample positions if their underlying vertices are adjacent. Conditional on the underlying roots, the two extensions are independent with the same distribution \(p\). For each matching type the conditional mean of its Gram entry is \(p^{\trans}Kp\ge0\). A root mismatch contributes zero. An induced copy of \(F\) uses six distinct underlying vertices by primeness. Thus the mean density term is \(6!c_F(G)/n^6\), and
+\[
+ \frac{(n)_6}{n^6}\,p(F,G)\le \E t(J)\le U,\qquad
+ (n)_6=n(n-1)\cdots(n-5).
+\]
+The prefactor tends to one. Maximizing over \(G\) and taking the limit proves the bound.
+\end{proof}
+
+The verifier forms the integer Gram products, tests the classifier symmetries, recounts the induced copies and evaluates \(s(H)\) on all \(8!\) vertex orderings. For \eqref{eq:nine} it verifies every deletion and enumerates each five-subset with each choice of root. The common denominator of the nine-vertex scores is \(9\cdot8!\,s_0^2\). Canonical forms distinguish the catalogue entries. The number of vertex orders giving a canonical form is the size of the automorphism group \(\Aut(J)\). For \(n=8,9\), the sums \(\sum_J n!/|\Aut(J)|\) over the respective catalogues equal \(2^{28}\) and \(2^{36}\), accounting for every labelled graph. The catalogues have 12,346 and 274,668 entries. Their exact scores give the upper endpoint of \eqref{eq:interval}.
+
+\input{substitutions}
+
+\clearpage
+\section*{Verification and data}
+The archive \texttt{six-vertex-certificates.zip} contains the data and
+source code for the finite calculations. Run \texttt{python -B verify.py}
+from its extracted directory. The command checks file hashes, rebuilds
+the finite certificates, and compares exact results. All five new
+construction counts and the rook weight inequality can also be checked
+with \texttt{python -B verify.py --part cases}, using the Python
+standard library. The unrestricted upper bounds use a C++20 compiler.
+The README gives the data formats, provenance and commands for running
+each calculation separately.
+
+The unrestricted calculation for \(F_{26}\) started from the \href{https://github.com/bodnalev/supplementary_files/blob/9f356bb3dc10dcacd4d26a4eb1d556c2650e4e1b/graph_inducibility_6vtx/certs/inexact_26.pickle}{order-eight numerical data for \(F_{26}\)} accompanying~\cite{six}. The supplement gives the revision and checksum.
+
+\begin{thebibliography}{9}
+\small\raggedright\setlength{\itemsep}{3pt}
+\bibitem{bh} M.~Belavadi and Ch\'inh T.~Ho\`ang.
+Structural description of (bull, house)-free graphs.
+\href{https://arxiv.org/abs/2604.27594v3}{arXiv:2604.27594v3} (2026), Theorem~1.3.
+\bibitem{six} Levente Bodn\'ar, Jun Gao, Jared Le\'on, Xizhi Liu, Oleg Pikhurko and Shumin Sun.
+The inducibility of 6-vertex graphs.
+\href{https://arxiv.org/abs/2606.00290v3}{arXiv:2606.00290v3} (2026), Sections~4 and~5, Tables~2 and~3.
+\href{https://github.com/bodnalev/supplementary_files/tree/9f356bb3dc10dcacd4d26a4eb1d556c2650e4e1b/graph_inducibility_6vtx}{Supplementary data}.
+\bibitem{first} O.~Kyzlasov. Petersen substitutions and the inducibility
+of the six-vertex tree \(F_{26}\). Zenodo, version 1.0 (2026).
+\href{https://doi.org/10.5281/zenodo.24341542}{doi:10.5281/zenodo.24341542}.
+\bibitem{limits} L.~Lov\'asz and B.~Szegedy. Limits of dense graph sequences.
+\emph{J. Combin. Theory Ser. B} \textbf{96} (2006), 933-957.
+\href{https://arxiv.org/abs/math/0408173}{arXiv:math/0408173}.
+\bibitem{pg} N.~Pippenger and M.~C.~Golumbic. The inducibility of graphs.
+\emph{J. Combin. Theory Ser. B} \textbf{19} (1975), 189-203.
+\href{https://doi.org/10.1016/0095-8956(75)90084-2}{doi:10.1016/0095-8956(75)90084-2}.
+\bibitem{raz} A.~A.~Razborov. Flag algebras.
+\emph{J. Symbolic Logic} \textbf{72} (2007), 1239-1282.
+\href{https://doi.org/10.2178/jsl/1203350785}{doi:10.2178/jsl/1203350785}.
+\end{thebibliography}
+\end{document}
