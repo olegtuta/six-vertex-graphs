@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+**/manuscript/f26.pdf
+**/manuscript/six-vertex.pdf
+fresh-results.json

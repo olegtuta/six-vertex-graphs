@@ -1,0 +1,63 @@
+{
+  "elementary": {
+    "petersen_copies": 60,
+    "copies_by_center": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "construction_limit": "480/11111",
+    "upper_endpoint_used_for_comparison": "233973195106737927117969229/5415987671873538702683668480",
+    "interval_width": "2088331666530919595233019/60177039022186888525518240481280",
+    "replacement_examples_checked": 4,
+    "table_lower_relative_gain_percent": "2056722322100/43432776779",
+    "table_numerical_upper_minus_lower": "2010851/55555000000000"
+  },
+  "restricted": {
+    "classes_by_order": {
+      "1": 1,
+      "2": 3,
+      "3": 6,
+      "4": 17,
+      "5": 41,
+      "6": 125,
+      "7": 388,
+      "8": 1491
+    },
+    "gram_blocks": 146,
+    "total_gram_dimension": 4164,
+    "coefficients": 534006,
+    "packed_columns": 148076,
+    "tight_host_rows": 276,
+    "petersen_supported_rows": 276,
+    "equality_f_root": 142,
+    "equality_flags": 28,
+    "kernel_column_rank": 27,
+    "completions": {
+      "26": 1,
+      "34": 1,
+      "38": 2,
+      "44": 2,
+      "60": 1
+    },
+    "remaining_edge_mask": 10
+  },
+  "unrestricted": {
+    "eight_graphs": 12346,
+    "nine_graphs": 274668,
+    "labelled_eight": 268435456,
+    "labelled_nine": 68719476736,
+    "even_blocks": 169,
+    "odd_block_dimension": 90,
+    "denominator_of_factors": 4398046511104,
+    "bound": "233973195106737927117969229/5415987671873538702683668480"
+  },
+  "verified": "all"
+}
